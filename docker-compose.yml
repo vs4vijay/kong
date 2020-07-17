@@ -14,8 +14,9 @@ services:
     networks:
       - kong-net
     environment:
-      POSTGRES_USER: kong
       POSTGRES_DB: kong
+      POSTGRES_USER: kong
+      POSTGRES_PASSWORD: kingKONG123
     ports:
       - "5432:5432"
     healthcheck:
@@ -34,7 +35,10 @@ services:
       - kong-net
     restart: on-failure
     environment:
+      KONG_DATABASE: postgres
       KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: kingKONG123
     links:
       - kong-database
     depends_on:
@@ -49,9 +53,11 @@ services:
     networks:
       - kong-net
     environment:
+      KONG_DATABASE: postgres
       KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: kingKONG123
       KONG_PROXY_LISTEN: 0.0.0.0:8000
-      KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
       KONG_ADMIN_LISTEN: 0.0.0.0:8001
     depends_on:
       - kong-migration
