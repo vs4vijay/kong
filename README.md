@@ -14,3 +14,11 @@ docker-compose -f docker-compose.yml -f docker-compose.konga.yml up
 ```
 docker-compose down
 ```
+
+---
+
+## Screenshots
+
+### Konga UI
+
+![Konga UI](/.screenshots/konga_ui.png)
