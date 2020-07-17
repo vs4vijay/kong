@@ -1,8 +1,4 @@
-version: "3"
-
-networks:
- kong-net:
-  driver: bridge
+version: "3.7"
 
 services:
   #######################################
@@ -28,10 +24,11 @@ services:
     networks:
         - kong-net
     environment:
-      DB_ADAPTER: postgres
-      DB_DATABASE: konga_db
-      DB_HOST: kong-database
-      DB_USER: kong
+      # Let Konga use local db
+      # DB_ADAPTER: postgres
+      # DB_DATABASE: konga_db
+      # DB_HOST: kong-database
+      # DB_USER: kong
       TOKEN_SECRET: Sup3rS3cret!123
       NODE_ENV: production
     depends_on:
