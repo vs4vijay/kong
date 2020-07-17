@@ -16,9 +16,15 @@ services:
     environment:
       POSTGRES_DB: kong
       POSTGRES_USER: kong
-      POSTGRES_PASSWORD: kingKONG123
+      POSTGRES_PASSWORD_FILE: /run/secrets/kong_postgres_password
+    secrets:
+      - kong_postgres_password
     ports:
       - "5432:5432"
+    stdin_open: true
+    tty: true
+    volumes:
+      - kong_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "kong"]
       interval: 5s
@@ -30,7 +36,7 @@ services:
   #######################################
   kong-migration:
     image: kong:latest
-    command: "kong migrations bootstrap"
+    command: "kong migrations bootstrap && kong migrations up && kong migrations finish"
     networks:
       - kong-net
     restart: on-failure
@@ -38,7 +44,9 @@ services:
       KONG_DATABASE: postgres
       KONG_PG_HOST: kong-database
       KONG_PG_USER: kong
-      KONG_PG_PASSWORD: kingKONG123
+      KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
+    secrets:
+      - kong_postgres_password
     links:
       - kong-database
     depends_on:
@@ -55,18 +63,29 @@ services:
     environment:
       KONG_DATABASE: postgres
       KONG_PG_HOST: kong-database
+      KONG_PG_DATABASE: kong
       KONG_PG_USER: kong
-      KONG_PG_PASSWORD: kingKONG123
+      KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
       KONG_PROXY_LISTEN: 0.0.0.0:8000
       KONG_ADMIN_LISTEN: 0.0.0.0:8001
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+    secrets:
+      - kong_postgres_password
     depends_on:
       - kong-migration
       - kong-database
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://kong:8001"]
-      interval: 5s
-      timeout: 2s
-      retries: 15
+      test: ["CMD", "kong", "health"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
     ports:
       - "8001:8001"
       - "8000:8000"
+
+secrets:
+  kong_postgres_password:
+    file: ./password.txt
