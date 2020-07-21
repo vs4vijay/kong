@@ -3,12 +3,13 @@
 import http.server
 import socketserver
 
-PORT = 8000
+HOST = '127.0.0.1'
+PORT = 11000
 
 Handler = http.server.SimpleHTTPRequestHandler
 
 httpd = socketserver.TCPServer(("", PORT), Handler)
 
-print("[+] serving at port", PORT)
+print(f"[+] Server running at http://{HOST}:{PORT}/")
 
 httpd.serve_forever()
