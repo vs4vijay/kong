@@ -1,5 +1,18 @@
-Install Kubernetes Control Plane:
+## Deploy a Sample Service
 
-Here we're using using "KinD", you can choose K3S, Minikube, etc.
+### Deploy Echo Service
+```
+kubectl apply -f https://bit.ly/echo-service
+```{{ execute T4 }}
 
-`curl -Lo kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64`{{ execute T1 }}
+### Verify Deployment
+```
+kubectl get svc
+```{{ execute T5 }}
+
+### Verify Endpoint
+```
+export ECHO_ENDPOINT=$(kubectl get -o jsonpath="{.spec.clusterIP}" service echo)
+
+curl -i $ECHO_ENDPOINT
+```{{ execute T6 }}

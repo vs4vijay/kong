@@ -1,5 +1,7 @@
 # kong
 
+Try at KataCode: https://katacoda.com/vs4vijay/scenarios/kong-with-kubernetes
+
 ## Getting Start
 
 ### Kong with Docker

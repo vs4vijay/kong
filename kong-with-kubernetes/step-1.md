@@ -1,5 +1,18 @@
-Install Kubernetes Control Plane:
+## Install Kong to Kubernetes Cluster
 
-Here we're using using "KinD", you can choose K3S, Minikube, etc.
 
-`curl -Lo kind https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64`{{ execute T1 }}
+### Install
+```
+kubectl apply -f https://bit.ly/k4k8s
+```{{ execute T1 }}
+
+### Verify
+```
+kubectl get services -n kong
+```{{ execute T2 }}
+
+### Get Proxy Endpoint
+```
+export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
+echo "Proxy IP is ${PROXY_IP}"
+```
