@@ -33,7 +33,7 @@ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
 ```
 
 Try Sample Service:
-```shell script
+```shell
 kubectl apply -f https://bit.ly/echo-service
 
 
@@ -72,7 +72,7 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /demo
         backend:
           serviceName: echo
           servicePort: 80
@@ -88,6 +88,7 @@ References:
 - https://github.com/Kong/kubernetes-ingress-controller
 - https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/guides/getting-started.md
 - https://github.com/Kong/kubernetes-ingress-controller/blob/master/docs/guides/using-external-service.md
+- https://www.konglabs.io/get-started-with-kong-free-access/
 
 
 ---
@@ -102,12 +103,17 @@ References:
 
 ### Development Notes
 
-```console
+```shell
 
-kubectl annotate service productpage ingress.kubernetes.io/service-upstream=true
-service/productpage annotated
+kubectl apply -f https://bit.ly/k8s-httpbin
 
-kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/override":"https-only"}}}'
+kubectl patch service httpbin -p '{"metadata":{"annotations":{"konghq.com/plugins":"viz-rate-limit"}}}'
+
+kubectl annotate service httpbin konghq.com/plugins=viz-request-id
+
+kubectl apply -f - <<DOC
+
+DOC
 
 https://raw.githubusercontent.com/istio/istio/master/samples/bookinfo/platform/kube/bookinfo.yaml
 
@@ -117,6 +123,7 @@ https://bit.ly/k4k8s
 https://bit.ly/echo-service
 https://bit.ly/k8s-redis
 https://bit.ly/k8s-httpbin
+https://bit.ly/kong-ingress-dbless
 
 
 #####################
@@ -136,18 +143,5 @@ ruby -run -e httpd . -p 8000
 ## Using PHP
 php -S localhost:8000
 #####################
-
-
-kind: Service
-apiVersion: v1
-metadata:
-  name: proxy-to-httpbin
-spec:
-  ports:
-  - protocol: TCP
-    port: 80
-  type: ExternalName
-  externalName: httpbin.org
-
 
 ```
