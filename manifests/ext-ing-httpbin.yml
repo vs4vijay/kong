@@ -4,7 +4,7 @@ metadata:
   name: ext-bin
 spec:
   rules:
-  - host: ext-bin.com
+  - host: ext-bin.org
     http:
       paths:
       - backend:

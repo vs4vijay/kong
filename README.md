@@ -109,7 +109,7 @@ References:
 
 kubectl apply -f https://bit.ly/k8s-httpbin
 
-kubectl patch service httpbin -p '{"metadata":{"annotations":{"konghq.com/plugins":"viz-rate-limit"}}}'
+kubectl patch service ext-httpbin -p '{"metadata":{"annotations":{"konghq.com/plugins":"viz-rate-limit"}}}'
 
 kubectl annotate service httpbin konghq.com/plugins=viz-request-id
 
