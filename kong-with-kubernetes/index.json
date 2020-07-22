@@ -1,13 +1,25 @@
 {
   "title": "Kong with Kubernetes",
   "description": "Running Kong API Gateway Inside Kubernetes Cluster as a Ingress Controller",
-  "difficulty": "Beginner",
-  "time": "15 minutes",
+  "difficulty": "Intermediate",
+  "time": "20 minutes",
   "details": {
     "steps": [
       {
-        "title": "Setup Kubernetes cluster and kubectl",
+        "title": "Step 1",
         "text": "step-1.md"
+      },
+      {
+        "title": "Step 2",
+        "text": "step-2.md"
+      },
+      {
+        "title": "Step 3",
+        "text": "step-3.md"
+      },
+      {
+        "title": "Step 4",
+        "text": "step-4.md"
       }
     ],
     "intro": {
@@ -21,6 +33,6 @@
     "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "bash"
+    "imageid": "minikube-running"
   }
 }

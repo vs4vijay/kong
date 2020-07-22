@@ -1,5 +1,4 @@
 This walk-through will contain following:
-- Setup Kubernetes Environment
 - Setup Kong as Ingress Controller
-- Create App
+- Create App, Services
 - Use Kong as API Gateway to Apps
