@@ -1,0 +1,26 @@
+{
+  "title": "Kong with Kubernetes",
+  "description": "Running Kong API Gateway Inside Kubernetes Cluster as a Ingress Controller",
+  "difficulty": "Beginner",
+  "time": "15 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "Step 1",
+        "text": "step-1.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md"
+    },
+    "finish": {
+      "text": "finish.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "bash"
+  }
+}
