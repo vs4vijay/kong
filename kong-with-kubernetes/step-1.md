@@ -25,7 +25,7 @@ export PROXY_IP=$(kubectl get -o jsonpath="{.spec.clusterIP}" service -n kong ko
 ### Access the API
 
 ```
-curl -i $PROXY_IP/demo
+curl -i $PROXY_IP
 ```{{ execute T1 }}
 
 - It will give some warning, as we haven't configured Kong
