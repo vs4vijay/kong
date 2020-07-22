@@ -1,6 +1,6 @@
-## Deploy an app
+## Deploy a Service
 
-Now we will deploy a sample app, this will be used by Kong in next step
+Now we will deploy a sample kubernetes service, this will be used by Kong in next step.
 
 ### Deploy Echo Service
 

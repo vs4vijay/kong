@@ -1,6 +1,7 @@
-## Deploy another app
+## Deploy another Service
 
 Now we will create a Service with `ExternalName` type, and try to configure kong from Service resource.
+
 - In previous step, we have added kong annotations to Ingress resource, now we will add annotations to Service
 
 ### Add External Service

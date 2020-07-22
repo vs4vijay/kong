@@ -42,7 +42,7 @@ DOC
 
 Kong Ingress Controller uses the Declarative style configuration to create kong resources like Services, Routes, Plugins etc etc.
 
-This is where we configure kong plugins to be used by Kubernetes Resource. Right now we will be adding both "viz-request-id" and "viz-rate-limit" plugin to the "echo" service that we created in previous step. 
+This is where we configure kong plugins to be used by Kubernetes Resource. Right now we will be adding both "**viz-request-id**" and "**viz-rate-limit**" plugin to the "**echo**" service that we created in previous step. 
 
 Lets apply add `konghq.com/plugins` with value `viz-request-id, viz-rate-limit` to annotations.
 
@@ -70,9 +70,10 @@ DOC
 ### Verify
 
 ```
-curl -i $PROXY_IP
+curl -i $PROXY_IP/demo
 ```{{ execute T1 }}
+
 - Please note that, we're hitting `PROXY_IP` endpoint instead of `ECHO_ENDPOINT`, so request goes via Cluster Ingress only
 - Now you will notice that Kong has added some extra header to request and response
-- There will be a Request Header "viz-request-id" containing unique id
+- There will be a Request Header "**viz-request-id**" containing unique id
 - Rate Limiting will also work, try to hit the same curl command more than 5 times
