@@ -6,6 +6,7 @@ Now we will create a Service with `ExternalName` type, and try to configure kong
 ### Add External Service
 
 ```
+kubectl apply -f - <<DOC
 kind: Service
 apiVersion: v1
 metadata:
@@ -16,6 +17,7 @@ spec:
     port: 80
   type: ExternalName
   externalName: httpbin.org
+DOC
 ```{{ execute T1 }}
 
 - We just created a simple Kubernetes Service which points to external URL: httpbin.org
@@ -23,6 +25,7 @@ spec:
 ### Add Ingress Rule for it
 
 ```
+kubectl apply -f - <<DOC
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -35,6 +38,7 @@ spec:
       - backend:
           serviceName: ext-httpbin
           servicePort: 80
+DOC
 ```{{ execute T1 }}
 
 - Here we have created simple Ingress Rule which diverts the traffic from host `ext-bin.org` to our service `ext-httpbin`

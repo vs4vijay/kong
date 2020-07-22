@@ -19,13 +19,13 @@ kubectl get services -n kong
 ### Get Proxy Endpoint
 
 ```
-export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
+export PROXY_IP=$(kubectl get -o jsonpath="{.spec.clusterIP}" service -n kong kong-proxy)
 ```{{ execute T1 }}
 
 ### Access the API
 
 ```
-curl -i $PROXY_IP
+curl -i $PROXY_IP/demo
 ```{{ execute T1 }}
 
 - It will give some warning, as we haven't configured Kong

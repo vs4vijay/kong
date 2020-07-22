@@ -146,4 +146,6 @@ ruby -run -e httpd . -p 8000
 php -S localhost:8000
 #####################
 
+export PROXY_IP=$(kubectl get -o jsonpath="{.spec.clusterIP}" service -n kong kong-proxy)
+
 ```
