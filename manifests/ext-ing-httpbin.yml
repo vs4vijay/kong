@@ -2,13 +2,11 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ext-bin
-  annotations:
-    konghq.com/plugins: viz-rate-limit
 spec:
   rules:
   - host: ext-bin.com
     http:
       paths:
       - backend:
-          serviceName: httpbin
+          serviceName: ext-httpbin
           servicePort: 80

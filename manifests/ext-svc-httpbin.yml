@@ -2,6 +2,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: ext-httpbin
+  annotations:
+    konghq.com/plugins: viz-rate-limit
 spec:
   ports:
   - protocol: TCP
