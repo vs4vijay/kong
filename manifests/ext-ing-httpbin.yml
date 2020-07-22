@@ -6,9 +6,9 @@ metadata:
     konghq.com/plugins: viz-rate-limit
 spec:
   rules:
-  - http:
+  - host: ext-bin.com
+    http:
       paths:
-      - path: /get
-        backend:
+      - backend:
           serviceName: httpbin
           servicePort: 80
