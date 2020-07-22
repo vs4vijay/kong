@@ -21,7 +21,7 @@ spec:
 DOC
 ```{{ execute T1 }}
 
-- We just created a simple Kubernetes Service which points to external URL: httpbin.org
+- We just created a simple Kubernetes Service which points to external URL: **httpbin.org**
 
 ### Add Ingress Rule for it
 
@@ -60,7 +60,7 @@ kubectl patch service ext-httpbin -p '{"metadata":{"annotations":{"konghq.com/pl
 
 - This will apply annotation to service
 
-### Verify
+### Verify after Kong is Configured
 
 ```
 curl -i -H "Host: ext-bin.org" $PROXY_IP/get
